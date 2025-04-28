@@ -11,7 +11,7 @@ export const sliderData = [
         img: "/2.png",
         location: "HIỀN",
         description: "Có ánh mắt câu thơ dịu dàng",
-        title: "Lhông yêu em thì yêu ai",
+        title: "Không yêu em thì yêu ai",
         song: "/music/song-2.mp3"
     },
     {
