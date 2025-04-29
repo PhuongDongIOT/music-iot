@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Progress from "./Progress";
 import { CurrentSlideData, Data } from "@/pages";
+import AudioPlayer from "./AudioPlayer";
 
 type Props = {
   currentSlideData: CurrentSlideData;
@@ -26,7 +27,10 @@ function Controls({
   handleCurrentSlideData,
   initData,
 }: Props) {
+
+  const [playing, setPlaying] = useState<boolean>(false);
   const handlePrev = () => {
+    if(!playing) setPlaying(true)
     prevTrack();
     handleData((prevData) => [
       transitionData ? transitionData : initData,
@@ -55,6 +59,7 @@ function Controls({
       ]);
       nextTrack()
     }, 500);
+    if(!playing) setPlaying(true)
   };
 
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -71,16 +76,16 @@ function Controls({
     setCurrentTrack(prev);
   };
 
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.load(); // Reload new src
-      audioRef.current.play();
-    }
-  }, [currentTrack]);
+  // useEffect(() => {
+  //   if (audioRef.current) {
+  //     audioRef.current.load(); // Reload new src
+  //     audioRef.current.play();
+  //   }
+  // }, [currentTrack]);
 
 
   return (
-    <div className="flex items-center gap-3 px-0 py-3 md:px-1 md:py-5">
+    <div className="flex items-center gap-2 px-0 py-3 md:px-1 md:py-5">
       <SliderButton handleClick={handlePrev}>
         <IoIosArrowBack className=" text-xl" />
       </SliderButton>
@@ -88,10 +93,7 @@ function Controls({
         <IoIosArrowForward className=" text-xl" />
       </SliderButton>
       <Progress curIndex={currentSlideData.index} length={sliderData.length} />
-
-      <audio ref={audioRef} className="hidden">
-        <source src={sliderData[currentTrack].song} type="audio/mpeg" />
-      </audio>
+      <AudioPlayer src={sliderData[currentTrack].song} waveColor={sliderData[currentTrack].waveColor} progressColor={sliderData[currentTrack].progressColor} />
     </div>
   );
 }

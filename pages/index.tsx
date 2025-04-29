@@ -12,12 +12,15 @@ const inter = Righteous({
   subsets: ["latin"],
   weight: ["400"],
 });
+
 export type Data = {
   img: string;
   title: string;
   description: string;
   location: string;
-  song: string
+  song: string;
+  progressColor: string;
+  waveColor: string;
 };
 
 export type CurrentSlideData = {
@@ -27,7 +30,6 @@ export type CurrentSlideData = {
 export default function Home() {
 
   const initData = sliderData[0];
-
   const [data, setData] = React.useState<Data[]>(sliderData.slice(1));
   const [transitionData, setTransitionData] = React.useState<Data>(
     sliderData[0]

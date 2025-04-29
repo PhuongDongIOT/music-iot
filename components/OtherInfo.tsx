@@ -19,15 +19,15 @@ function OtherInfo({ data }: Props) {
   return (
     <motion.div initial="hidden" animate={"visible"} className=" flex flex-col">
       <AnimatedText
-        className=" spacing overflow-hidden text-[#D5D5D6]"
+        className=" spacing overflow-hidden text-[#e63946]"
         data={data?.location}
       />
       <AnimatedText
-        className=" my-1 text-4xl font-semibold md:my-3 md:text-8xl md:leading-[100px]"
+        className="text-[#ffafcc] my-1 text-4xl font-semibold md:my-3 md:text-8xl md:leading-[100px]"
         data={data?.title}
       />
       <AnimatedText
-        className=" text-xs text-[#D5D5D6]"
+        className=" text-xs text-[#ffc8dd]"
         data={data?.description}
       />
     </motion.div>

@@ -19,10 +19,7 @@ function Progress({ curIndex, length }: Props) {
       </div>
       <span
         key={curIndex}
-        style={{
-          overflow: "hidden",
-          display: "inline-block",
-        }}
+        style={{display: "inline-block"}}
       >
         <motion.div
           initial={{
@@ -36,7 +33,7 @@ function Progress({ curIndex, length }: Props) {
             duration: 0.6,
             ease: "easeInOut",
           }}
-          className=" flex items-center text-4xl font-medium "
+          className="relative z-99 flex items-center text-4xl font-medium "
         >
           0{curIndex + 1}
         </motion.div>
